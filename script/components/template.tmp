@@ -1,0 +1,10 @@
+import React from 'react';
+
+
+function {*NAME*}() {
+	return (
+		<div className='{*NAMECLASS*}'></div>
+	)
+}
+
+export default {*NAME*};
