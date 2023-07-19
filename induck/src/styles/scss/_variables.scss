@@ -1,0 +1,16 @@
+$breakpoints: (
+    xs: 412,
+    s: 480,
+    sm: 640,
+    md: 960,
+    lg: 1024,
+    xl: 1280,
+    xxl: 1440,
+    xxxl: 1600,
+    fhd: 1920,
+);
+
+$black: #000000;
+$white: #FFF;
+$startGradientAnim:linear-gradient(80deg, #00B09B 0%, #96C93D 100%);
+$endGradientAnim:linear-gradient(-30deg, #00B09B 0%, #96C93D 100%);

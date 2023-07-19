@@ -1,0 +1,143 @@
+.welcome {
+    $result: -100vh*0.4;
+
+    color: $black;
+    height: 100%;
+    display: flex;
+    background-color: $black;
+
+    &__content {
+        &.prev {
+            @include flex-center;
+
+            position: relative;
+
+            width: min-content;
+            height: min-content;
+
+            border-radius: 35px;
+
+            margin: auto;
+            background-color: $white;
+
+
+            z-index: 1;
+
+            &::after {
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+
+                border-radius: 35px;
+
+                width: 100%;
+                height: 100%;
+
+                z-index: 1;
+                opacity: 0;
+                background: linear-gradient(80deg, #00B09B 0%, #96C93D 100%);
+
+                transition: border-radius 1s ease-in-out 3s, width .25s ease-in-out 3s, height .4s ease-in-out 3s, opacity 2s ease;
+            }
+
+            &-in-animation::after {
+                opacity: 1;
+
+                width: 100vw;
+                height: 100vh;
+
+                top: auto;
+                left: auto;
+                border-radius: 0;
+            }
+
+        }
+
+        &.next {
+            @include flex-center;
+            position: relative;
+
+            //height: 100vh; Из-за это xyйни у меня были артефакты в анимации, тупая bлядина
+
+            color: $white;
+
+            @include gradientAnimation($startGradientAnim, $endGradientAnim, 5s)
+        }
+    }
+
+    &__appName {
+        text-align: center;
+        font-family: Montserrat Alternates;
+        font-size: 1.2rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.18rem;
+        padding: .5rem 1.25rem;
+
+        &.next {
+            position: absolute;
+            z-index: 2;
+        }
+
+        &.prev {
+            position: relative;
+            color: $black;
+            border-radius: 35px;
+
+            z-index: 2;
+
+            transition: color 1s ease-in-out, transform 1s ease-in-out 4s;
+
+            &-in-animation {
+                color: $white;
+            }
+        }
+
+    }
+
+
+    &__title,
+    &__text,
+    &__button,
+    &__link {
+        z-index: 2;
+
+        @include smoothVisible(2s);
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    &__text {
+        font-family: Inter;
+        text-align: center;
+        font-size: 0.8rem;
+
+        padding: 1.2rem 1rem 2.8rem;
+    }
+
+    &__button {
+        color: #000;
+        text-align: center;
+        font-size: 0.7rem;
+
+        background-color: $white;
+        font-family: Inter;
+
+        border-radius: 35px;
+        padding: .7rem 1.5rem;
+    }
+
+    &__link {
+        text-align: center;
+        font-family: Inter;
+        font-size: 0.7rem;
+
+        padding: 1rem 0;
+    }
+
+}

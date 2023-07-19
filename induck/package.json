@@ -1,6 +1,7 @@
 {
   "name": "induck",
   "version": "0.1.0",
+  "homepage": "https://black-evil-dragon.github.io/induck",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -11,14 +12,21 @@
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "colors": "^1.4.0",
+    "gh-pages": "^5.0.0",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "sort-by": "^1.2.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
