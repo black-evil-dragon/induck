@@ -3,7 +3,7 @@
 
     color: $black;
     height: 100%;
-    display: flex;
+    //display: flex;
     background-color: $black;
 
     &__content {
@@ -57,7 +57,7 @@
         &.next {
             @include flex-center;
             position: relative;
-
+            height: 100%;
             //height: 100vh; Из-за это xyйни у меня были артефакты в анимации, тупая bлядина
 
             color: $white;
