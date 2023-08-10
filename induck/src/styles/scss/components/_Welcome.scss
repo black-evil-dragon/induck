@@ -1,0 +1,174 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    color: $black;
+    background-color: $black;
+
+    .help-label {
+        position: absolute;
+        @include flex-center;
+
+        width: 100%;
+        height: 100%;
+
+        transform: translateY(2.5rem);
+        font-size: .75rem;
+        text-align: center;
+
+        color: #ffffff73;
+    }
+    &__content {
+        &.prev {
+            @include flex-center;
+
+            position: relative;
+            z-index: 1;
+
+            width: min-content;
+            height: min-content;
+
+            border-radius: 35px;
+
+            margin: auto;
+            background-color: $white;
+
+            &::after {
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                z-index: 1;
+
+                width: 100%;
+                height: 100%;
+
+                border-radius: 35px;
+
+                opacity: 0;
+                background: linear-gradient(80deg, #00B09B 0%, #96C93D 100%);
+
+                transition: border-radius 1s ease-in-out 3s, width .25s ease-in-out 3s, height .4s ease-in-out 3s, opacity 2s ease;
+            }
+
+            &-in-animation::after {
+                top: auto;
+                left: auto;
+                opacity: 1;
+
+                width: 100vw;
+                height: 100vh;
+
+                border-radius: 0;
+            }
+
+        }
+
+        &.next {
+            @include flex-center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            //height: 100vh; Из-за это xyйни у меня были артефакты в анимации
+
+            color: $white;
+
+            @include gradientAnimation($startGradientAnim, $endGradientAnim, 5s)
+        }
+    }
+
+    &__appName {
+        font-family: Montserrat Alternates;
+        font-weight: 500;
+        font-size: 1.2rem;
+        letter-spacing: 0.18rem;
+        text-align: center;
+
+        padding: .5rem 1.25rem;
+
+        &.prev {
+            position: relative;
+            z-index: 2;
+
+            color: $black;
+            border-radius: 35px;
+
+            transition: color 1s ease-in-out, transform 1s ease-in-out 4s;
+
+            &-in-animation {
+                color: $white;
+            }
+        }
+
+        &.next {
+            position: absolute;
+            z-index: 2;
+        }
+
+
+
+    }
+
+
+    &__title,
+    &__text,
+    &__button,
+    &__link {
+        z-index: 2;
+
+        @include smoothVisible(1s);
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    &__text {
+        font-family: Inter;
+        text-align: center;
+        font-size: 0.8rem;
+
+        padding: 1.2rem 1rem 2.8rem;
+    }
+
+    &__button button {
+        color: #000;
+        text-align: center;
+        font-size: 0.7rem;
+
+        background-color: $white;
+        font-family: Inter;
+
+        border-radius: 35px;
+        padding: .7rem 1.5rem;
+
+        transition: transform .1s ease-in-out;
+
+        &:hover {
+            transform: scale(1.05)
+        }
+
+        @media only screen and (max-width: 768px) {
+            &:hover {
+                transform: scale(1);
+            }
+
+            &:active {
+                transform: scale(.95);
+            }
+        }
+    }
+
+    &__link {
+        text-align: center;
+        font-family: Inter;
+        font-size: 0.7rem;
+
+        padding: 1rem 0 .1rem;
+
+        @include smooth-underline;
+    }
+
+}

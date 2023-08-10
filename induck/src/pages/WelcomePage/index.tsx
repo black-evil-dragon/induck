@@ -1,9 +1,28 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
+import Welcome from '../../components/Welcome';
+import SignIn from '../../components/SignIn';
+import SignUp from '../../components/SignUp';
 
-function WelcomePage() {
+type pageTypes = {
+	isLogin: boolean
+}
+function WelcomePage({isLogin}: pageTypes) {
 	return (
-		<div className='welcomepage'></div>
+		<>
+			<Routes>
+				<Route path='/' element={
+					<Welcome />
+				}/>
+				<Route path='/signin' element={
+					<SignIn />
+				}/>
+				<Route path='/signup' element={
+					<SignUp />
+				}/>
+			</Routes>
+		</>
 	)
 }
 
