@@ -13,10 +13,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<HashRouter basename="/induck">
+		<HashRouter basename="/">
 			<Routes>
-				<Route path='/' element={<App />}/>
-				<Route path='/signup' element={<SignUp />}/>
+				<Route path='' element={<App />}/>
+				<Route path='signup' element={<SignUp />}/>
 			</Routes>
 		</HashRouter>
 	</React.StrictMode>
