@@ -7,6 +7,7 @@ function App() {
 	const isLogin: boolean = false
 	return (
 		<>
+		3
 			{!isLogin ? <WelcomePage isLogin={isLogin} /> : <></>}
 		</>
 	);
