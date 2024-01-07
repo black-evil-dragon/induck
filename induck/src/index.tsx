@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<BrowserRouter basename={'https://black-evil-dragon.github.io/induck'}>
+		<BrowserRouter basename={'https://black-evil-dragon.github.io/'}>
 			<App />
 		</BrowserRouter>
 	</React.StrictMode>
