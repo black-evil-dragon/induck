@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './styles/scss/index.scss';
 
 import App from './App';
+import SignUp from './components/SignUp';
 
 console.log(document.getElementById('root'));
 const root = ReactDOM.createRoot(
@@ -12,12 +13,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		1
-		<App />
-		{/* <BrowserRouter>
-		2
-			
-		</BrowserRouter> */}
+		<BrowserRouter basename="/induck">
+			<Routes>
+				<Route path='/' element={<App />}/>
+				<Route path='/signup' element={<SignUp />}/>
+			</Routes>
+		</BrowserRouter>
 	</React.StrictMode>
 )
 
