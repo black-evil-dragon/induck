@@ -6,13 +6,13 @@ import './styles/scss/index.scss';
 
 import App from './App';
 
-
+console.log(123);
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
 root.render(
 	<React.StrictMode>
-		<BrowserRouter basename={'https://black-evil-dragon.github.io/induck'}>
+		<BrowserRouter basename={'https://black-evil-dragon.github.io/induck/'}>
 			<App />
 		</BrowserRouter>
 	</React.StrictMode>
