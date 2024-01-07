@@ -6,7 +6,7 @@ import './styles/scss/index.scss';
 
 import App from './App';
 
-console.log(123);
+console.log(document.getElementById('root'));
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
