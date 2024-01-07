@@ -50,10 +50,9 @@ function Welcome() {
 						</div>
 
 						<div className="welcome__title">
-							Ты смешарик?)
+							Впервые здесь?
 						</div>
-						<div className="welcome__text">
-							Нет? Тогда тебе стоит зарегистрироваться! Это позволит прикрепить прогресс к логину.					</div>
+						<div className="welcome__text">Да? Тогда тебе стоит зарегистрироваться! Это позволит прикрепить прогресс к логину.</div>
 						<div className="welcome__button">
 							<button onClick={() => navigate('/signup')}>Зарегистрироваться</button>
 						</div>
