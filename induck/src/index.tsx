@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
 
 import './styles/scss/index.scss';
 
@@ -13,12 +13,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<BrowserRouter basename="/induck">
+		<HashRouter basename="/induck">
 			<Routes>
 				<Route path='/' element={<App />}/>
 				<Route path='/signup' element={<SignUp />}/>
 			</Routes>
-		</BrowserRouter>
+		</HashRouter>
 	</React.StrictMode>
 )
 
