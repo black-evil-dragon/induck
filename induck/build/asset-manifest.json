@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/induck/static/css/main.661f96fe.css",
+    "main.js": "/induck/static/js/main.be5e2ff0.js",
+    "static/media/kitty.jpg": "/induck/static/media/kitty.cd6a48093f48214110bb.jpg",
+    "index.html": "/induck/index.html",
+    "main.661f96fe.css.map": "/induck/static/css/main.661f96fe.css.map",
+    "main.be5e2ff0.js.map": "/induck/static/js/main.be5e2ff0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.661f96fe.css",
+    "static/js/main.be5e2ff0.js"
+  ]
+}
