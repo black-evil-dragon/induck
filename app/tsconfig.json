@@ -1,0 +1,112 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "rootDirs": [
+            "src",
+            // "__jest__"
+        ],
+        "outDir": "build",
+        "lib": [
+            "dom",
+            "esnext"
+        ],
+        // Это включит все пакеты из массива только
+        // node_modules/@types - это путь по умолчанию. Требуется, в противном случае он будет проигнорирован.
+        "typeRoots": [
+            "node_modules/@types",
+            "src/types"
+        ],
+        "target": "es5",
+        "skipLibCheck": true, // Пропустить проверку типов в файлах объявлений (.d.ts)
+        "esModuleInterop": true, // Создает __importStar и __importDefault помощники для совместимости с Babel
+        "allowSyntheticDefaultImports": true, // разрешает импорт без свойства по умолчанию
+        "strict": true, // Включает все опции семейства строгого режима
+        "forceConsistentCasingInFileNames": true, // Принудительно использует одинаковое написание имен файлов
+        "noFallthroughCasesInSwitch": true, // Сообщает об ошибках для случаев прохода через операторы switch
+        "module": "esnext", // Устанавливает систему модулей для программы. Также требуется при использовании outFile option.
+        "moduleResolution": "node", // Указывает стратегию разрешения модулей
+        "resolveJsonModule": true, // Разрешает импорт модулей с расширением ‘.json’, что является обычной практикой в проектах node
+        "isolatedModules": true, // все файлы реализации должны быть модулями (что означает, что у них есть некоторая форма импорта/экспорта)
+        "noImplicitAny": true, // Выдает ошибку, если тип "any" указан где-то
+        "noImplicitThis": true, // Выдает ошибку на выражения "this" с неявным типом "any"
+        "noUnusedLocals": true, // Выдает ошибки на неиспользуемые локальные переменные
+        "noEmit": true, // Не генерирует выходные файлы компилятора, такие как исходный код JavaScript, карты источников или объявления
+        "jsx": "react",
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules", // автоматически генерирует виртуальные .d.ts для каждого файла css
+                "options": {
+                    "customTemplate": "./utils/customTemplate.js"
+                }
+            }
+        ],
+        "paths": {
+            "@app/*": [
+                "app/*"
+            ],
+            "@shared/*": [
+                "shared/*"
+            ],
+            "@entities/*": [
+                "entities/*"
+            ],
+            "@features/*": [
+                "features/*"
+            ],
+            "@widgets/*": [
+                "widgets/*"
+            ],
+            "@pages/*": [
+                "pages/*"
+            ],
+            "@styles/*": [
+                "@styles/*"
+            ],
+            "@assets/*": [
+                "@assets/*"
+            ],
+            "@static/*": [
+                "@static/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "coverage",
+        "webpack.*.js",
+        "*.config.js",
+        "**/*.test.ts*"
+    ],
+    "include": [
+        "src/**/*"
+    ],
+}
+// {
+//     "compilerOptions": {
+//         
+//         "target": "es5",
+//         "lib": [
+//             "dom",
+//             "dom.iterable",
+//             "esnext"
+//         ],
+//         "allowJs": true,
+//         "skipLibCheck": true,
+//         "esModuleInterop": true,
+//         "allowSyntheticDefaultImports": true,
+//         "strict": true,
+//         "forceConsistentCasingInFileNames": true,
+//         "noFallthroughCasesInSwitch": true,
+//         "module": "esnext",
+//         "moduleResolution": "node",
+//         "resolveJsonModule": true,
+//         "isolatedModules": true,
+//         "noEmit": false,
+//         "jsx": "react-jsx",
+
+
+//     "exclude": [
+//         "node_modules"
+//     ]
+// }
