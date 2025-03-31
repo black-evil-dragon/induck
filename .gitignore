@@ -1,3 +1,6 @@
+api/*
+api
+
 .vscode
 build
 dist

@@ -1,0 +1,1 @@
+export {default as NoPage} from './ui/NoPage'

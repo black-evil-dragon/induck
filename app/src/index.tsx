@@ -1,13 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+
+
 import App from '@app/root';
 
-// Находим корневой элемент
+
 const container = document.getElementById('root');
 
-// Проверяем, что элемент существует
 if (container) {
-    const root = createRoot(container); // Создаём корень
+    const root = createRoot(container);
     root.render(
         <React.StrictMode>
             <App />

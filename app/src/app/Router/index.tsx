@@ -3,10 +3,10 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import Layout from '@app/Layout';
 
-import NoPage from '@pages/404';
-import HomePage from '@pages/home';
-// import { Timetable } from '@pages/timetable';
-// import { AuthPage } from '@pages/auth';
+import { NoPage } from '@pages/404';
+import { HomePage } from '@pages/home';
+import { AuthPage } from '@pages/auth';
+
 
 
 function Routing() {
@@ -18,6 +18,7 @@ function Routing() {
                     <Route index element={<HomePage />} />
 
                     {/* Pages */}
+                    <Route path="/auth/" element={<AuthPage />} />
 
                     {/*     ... */}
 
