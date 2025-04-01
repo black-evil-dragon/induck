@@ -5,7 +5,8 @@ import Layout from '@app/Layout';
 
 import { NoPage } from '@pages/404';
 import { HomePage } from '@pages/home';
-import { AuthPage } from '@pages/auth';
+import { AuthPage, AuthRouter } from '@pages/auth';
+import { SelectionPage, SelectionRouter } from '@pages/selection';
 
 
 
@@ -18,7 +19,10 @@ function Routing() {
                     <Route index element={<HomePage />} />
 
                     {/* Pages */}
-                    <Route path="/auth/" element={<AuthPage />} />
+                    <Route path={AuthRouter.root} element={<AuthPage />} />
+
+
+                    <Route path={SelectionRouter.root} element={<SelectionPage />} />
 
                     {/*     ... */}
 
