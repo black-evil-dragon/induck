@@ -6,7 +6,7 @@ import Layout from '@app/Layout';
 import { NoPage } from '@pages/404';
 import { HomePage } from '@pages/home';
 import { AuthPage, AuthRouter } from '@pages/auth';
-import { SelectionPage, SelectionRouter } from '@pages/selection';
+import { CatalogPage, CatalogRouter } from '@pages/catalog';
 
 
 
@@ -22,7 +22,13 @@ function Routing() {
                     <Route path={AuthRouter.root} element={<AuthPage />} />
 
 
-                    <Route path={SelectionRouter.root} element={<SelectionPage />} />
+                    {/* Catalog with nested routes */}
+                    <Route path={CatalogRouter.root}>
+                        {/* /catalog — список категорий */}
+                        <Route index element={<CatalogPage />} />
+
+                        <Route path={CatalogRouter.category} element={<CatalogPage />} />
+                    </Route>
 
                     {/*     ... */}
 

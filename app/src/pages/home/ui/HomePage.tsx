@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 import { AuthRouter } from '@pages/auth';
-import { SelectionRouter } from '@pages/selection';
+import { CatalogRouter } from '@pages/catalog';
 
 
 interface HomePageProps {
@@ -17,7 +17,7 @@ const HomePage: React.FunctionComponent<HomePageProps> = () => {
             HOME PAGE
             <Link to={AuthRouter.root}>AUTH LINK</Link>
 
-            <Link to={SelectionRouter.root}>SELECTION LINK</Link>
+            <Link to={CatalogRouter.root}>Catalog LINK</Link>
         </>
     );
 }
