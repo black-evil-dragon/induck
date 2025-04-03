@@ -1,115 +1,90 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 
 import { CatalogRouter } from "..";
+import { Category, ResponseType } from "../api/types";
+import { catalogAPI } from "../api";
+import { Loader } from "@shared/Loader";
+
+
 
 interface CatalogPageProps {
     
 }
 
-type ResponseType<T = {}> = {
-    success: boolean;
-    code: number;
-    data: T;
-    error?: {
-        text: string;
-    };
-};
-interface Category {
-    slug: string;
-    title: string;
-    children: string;
-}
 
-const categories: Category[] = [
-    {
-        slug: "spelling",
-        title: "Орфография",
-        children: "",
-    },
-    {
-        slug: "grammar",
-        title: "Грамматика",
-        children: "",
-    },
-    {
-        slug: "vocabulary",
-        title: "Лексика",
-        children: "",
-    },
-];
-
-const promiseData = (slug: string): Promise<ResponseType<Category>> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const category = categories.find(category => category.slug === slug);
-            if (category) {
-                resolve({
-                    success: true,
-                    code: 200,
-                    data: category,
-                });
-            } else {
-                resolve({
-                    success: false,
-                    code: 404,
-                    data: {} as Category,
-                    error: {
-                        text: 'Категория не найдена',
-                    }
-                });
-            }
-        }, 500);
-    });
-};
 
 
  
 const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
-    let { categoryId } = useParams();
+    let { categorySlug } = useParams();
+    let navigate = useNavigate();
 
+    const [catalog, setCatalog] = React.useState<Category[]>([])
     const [category, setCategory] = React.useState<Category | null>(null)
+    const [isLoading, setLoading] = React.useState<boolean>(true)
 
     React.useEffect(() => {
-        if (categoryId) {
-            promiseData(categoryId).then((response) => {
-                console.log(response);
+        if (categorySlug) {
+            setLoading(true)
+            catalogAPI.getCategoryBySlug(categorySlug).then((response) => {
                 if (response.success) {
-                    setCategory(response.data);
-                } else {
-                    setCategory(null)
+                    setCategory(response.data!)
+                    setLoading(false)
+                    
+                } else if (response.code == 404) {
+                    navigate('/404')
+                }
+            })
+        } else {
+            setLoading(true)
+            catalogAPI.getCatalog().then(response => {
+                if (response.success) {
+                    setCatalog(response.data!)
+                    setLoading(false)
+
+                } else if (response.code == 404) {
+                    navigate('/404')
                 }
             })
         }
-    }, [categoryId])
+        
+    }, [categorySlug])
 
 
     return (<>
         <div className="page catalog">
             <section className="page-section">
                 <h1 className="page-title">
-                    Каталог
+                    Каталог {isLoading ? "true" : "false"} {categorySlug}
                 </h1>
             </section>
-            
+
             {
-                categoryId 
-                ?
-                <>
-                    {category?.title}
-                </>
-                : 
-                <section className="page-section catalog-items">
-                    <div className="catalog-items__item">
-                        <Link to={`${CatalogRouter.root}/spelling`}>SPELLING LINK</Link>
-                    </div>
+                isLoading ? <Loader />
+                : <>{
+                    categorySlug
+                    ? 
+                    <>
+                        <section>
+                            <h1>{category?.title}</h1>
+                        </section>
+                    </>
+                    :
+                    <section className="page-section catalog-items">
+                        {catalog.map((item: Category, index: number) => (
+                            <div className="catalog-items__item" key={`catalog-item-${index}`}>
+                                <Link to={`${CatalogRouter.root}/${item.slug}`}>{item.title}</Link>
+                            </div>
+                        ))}
                         <div className="catalog-items__item">
                             <Link to={`${CatalogRouter.root}/error`}>ERROR LINK</Link>
                         </div>
-                </section>
+                    </section>
+                }</>
             }
         </div>
     </>);

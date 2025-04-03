@@ -5,11 +5,11 @@ interface FooterProps {
 }
 
 const Footer: React.FunctionComponent<FooterProps> = () => {
-    return (
-        <>
+    return (<>
+        <footer>
             FOOTER
-        </>
-    );
+        </footer>
+    </>);
 }
 
 export default Footer;

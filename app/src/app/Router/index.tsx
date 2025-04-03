@@ -34,6 +34,7 @@ function Routing() {
 
                     {/* System pages */}
                     <Route path="*" element={<NoPage />} />
+                    <Route path="404" element={<NoPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

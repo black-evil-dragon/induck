@@ -11,11 +11,11 @@ function Header(props: {
 }) {
     return (
         <>
-            <div className={`${props.parent.className}__content`}>
+            <header className={`${props.parent.className}__content`}>
                 HEADER
                 <Link to={"/"}>HOME</Link>
                 <Link to={CatalogRouter.root}>CATALOG</Link>
-            </div>
+            </header>
         </>
     );
 }
