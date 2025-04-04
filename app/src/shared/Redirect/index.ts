@@ -1,0 +1,1 @@
+export {default as RedirectComponent} from "./ui/Redirect";

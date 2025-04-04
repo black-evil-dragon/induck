@@ -5,18 +5,16 @@ import { useParams } from "react-router-dom";
 
 
 import { CatalogRouter } from "..";
-import { Category, ResponseType } from "../api/types";
+import { Category } from "../api/types";
 import { catalogAPI } from "../api";
 import { Loader } from "@shared/Loader";
+import { QuizRouter } from "@pages/quiz";
 
 
 
 interface CatalogPageProps {
     
 }
-
-
-
 
  
 const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
@@ -30,9 +28,12 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
     React.useEffect(() => {
         if (categorySlug) {
             setLoading(true)
-            catalogAPI.getCategoryBySlug(categorySlug).then((response) => {
+            catalogAPI.getCategoryBySlug(categorySlug).then(response => {
                 if (response.success) {
                     setCategory(response.data!)
+                    console.log(response);
+                    setCatalog([])
+
                     setLoading(false)
                     
                 } else if (response.code == 404) {
@@ -59,7 +60,7 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
         <div className="page catalog">
             <section className="page-section">
                 <h1 className="page-title">
-                    Каталог {isLoading ? "true" : "false"} {categorySlug}
+                    Каталог
                 </h1>
             </section>
 
@@ -70,7 +71,28 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
                     ? 
                     <>
                         <section>
-                            <h1>{category?.title}</h1>
+                            <h2>{category?.title}</h2>
+                        </section>
+                        <section className="page-section catalog-items">
+                            {
+                            category?.children?.length
+                            &&
+                            category.children.map((item: Category, index: number) => (
+                                <div className="catalog-items__item" key={`catalog-item-${index}`}>
+                                    <Link to={`${CatalogRouter.root}/${item.slug}`}>{item.title}</Link>
+                                </div>
+                            ))
+                            }
+                        </section>
+
+                        <section>
+                            {
+                                category?.quizzes && category.quizzes.map((item: Category, index: number) => (
+                                    <div className="catalog-items__item" key={`catalog-item-${index}`}>
+                                        <Link to={`${QuizRouter.root}/${item.slug}`}>{item.title}</Link>
+                                    </div>
+                                ))
+                            }
                         </section>
                     </>
                     :

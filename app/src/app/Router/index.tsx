@@ -7,6 +7,8 @@ import { NoPage } from '@pages/404';
 import { HomePage } from '@pages/home';
 import { AuthPage, AuthRouter } from '@pages/auth';
 import { CatalogPage, CatalogRouter } from '@pages/catalog';
+import { QuizPage, QuizRouter } from '@pages/quiz';
+import { RedirectComponent } from '@shared/Redirect';
 
 
 
@@ -30,11 +32,18 @@ function Routing() {
                         <Route path={CatalogRouter.category} element={<CatalogPage />} />
                     </Route>
 
+                    {/* Question */}
+                    <Route path={QuizRouter.quiz}>
+                        <Route index element={<RedirectComponent path='/' />}/>
+
+                        <Route path={QuizRouter.quiz} element={<QuizPage />} />
+                    </Route>
+
                     {/*     ... */}
 
                     {/* System pages */}
                     <Route path="*" element={<NoPage />} />
-                    <Route path="404" element={<NoPage />} />
+                    <Route path="/404" element={<NoPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>
