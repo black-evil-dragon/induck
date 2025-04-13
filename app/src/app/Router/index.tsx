@@ -7,7 +7,7 @@ import { NoPage } from '@pages/404';
 import { HomePage } from '@pages/home';
 import { AuthPage, AuthRouter } from '@pages/auth';
 import { CatalogPage, CatalogRouter } from '@pages/catalog';
-import { QuizPage, QuizRouter } from '@pages/quiz';
+import { SelectionPage, SelectionRouter } from '@pages/selection';
 import { RedirectComponent } from '@shared/Redirect';
 
 
@@ -33,10 +33,10 @@ function Routing() {
                     </Route>
 
                     {/* Question */}
-                    <Route path={QuizRouter.quiz}>
+                    <Route path={SelectionRouter.selection}>
                         <Route index element={<RedirectComponent path='/' />}/>
 
-                        <Route path={QuizRouter.quiz} element={<QuizPage />} />
+                        <Route path={SelectionRouter.selection} element={<SelectionPage />} />
                     </Route>
 
                     {/*     ... */}

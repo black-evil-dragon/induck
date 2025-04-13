@@ -4,11 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 
-import { CatalogRouter } from "..";
-import { Category } from "../api/types";
-import { catalogAPI } from "../api";
+import { CatalogRouter, CatalogAPI } from "..";
+
+import { SelectionRouter } from "@pages/selection";
+
 import { Loader } from "@shared/Loader";
-import { QuizRouter } from "@pages/quiz";
+import { Category } from "@shared/data/catalog";
 
 
 
@@ -28,10 +29,9 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
     React.useEffect(() => {
         if (categorySlug) {
             setLoading(true)
-            catalogAPI.getCategoryBySlug(categorySlug).then(response => {
+            CatalogAPI.getCategoryBySlug(categorySlug).then(response => {
                 if (response.success) {
                     setCategory(response.data!)
-                    console.log(response);
                     setCatalog([])
 
                     setLoading(false)
@@ -42,7 +42,7 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
             })
         } else {
             setLoading(true)
-            catalogAPI.getCatalog().then(response => {
+            CatalogAPI.getCatalog().then(response => {
                 if (response.success) {
                     setCatalog(response.data!)
                     setLoading(false)
@@ -87,9 +87,9 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
 
                         <section>
                             {
-                                category?.quizzes && category.quizzes.map((item: Category, index: number) => (
+                                category?.selections && category.selections.map((item: Category, index: number) => (
                                     <div className="catalog-items__item" key={`catalog-item-${index}`}>
-                                        <Link to={`${QuizRouter.root}/${item.slug}`}>{item.title}</Link>
+                                        <Link to={`${SelectionRouter.root}/${item.slug}`}>{item.title}</Link>
                                     </div>
                                 ))
                             }
