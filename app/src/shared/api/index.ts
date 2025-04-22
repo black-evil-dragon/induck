@@ -1,39 +1,10 @@
-export interface Response<T> {
-    success: boolean;
-    code: number;
-    data?: T;
-    error?: {
-        text: string;
-    };
-}
+import { ApiClient } from './client';
 
-export interface ErrorResponse {
-    success: false;
-    code: number;
-    error: {
-        text: string;
-    };
-    data?: never;
-}
+const BASE_URL = 'http://localhost:5000/api/v1';
 
-export const emulateAPI = {
-    success: <T>(data: T, code = 200): Promise<Response<T>> => {
-        return new Promise((resolve) => {
-            setTimeout(() => resolve({
-                success: true,
-                code,
-                data,
-            }), 300);
-        });
-    },
+export const API = new ApiClient(BASE_URL, {
+    timeout: 10000,
+    withToken: true,
+});
 
-    error: (error: string, code = 404): Promise<ErrorResponse> => {
-        return new Promise((resolve) => {
-            setTimeout(() => resolve({
-                success: false,
-                code,
-                error: { text: error },
-            }), 700);
-        });
-    }
-}
+export * from './types';

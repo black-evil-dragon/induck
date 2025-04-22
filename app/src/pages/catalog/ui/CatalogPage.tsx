@@ -27,31 +27,17 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
     const [isLoading, setLoading] = React.useState<boolean>(true)
 
     React.useEffect(() => {
-        if (categorySlug) {
-            setLoading(true)
-            CatalogAPI.getCategoryBySlug(categorySlug).then(response => {
-                if (response.success) {
-                    setCategory(response.data!)
-                    setCatalog([])
+        setLoading(true)
+        CatalogAPI.getCatalog().then(response => {
+            if (response.success) {
+                setCatalog(response.data!)
+                setLoading(false)
 
-                    setLoading(false)
-                    
-                } else if (response.code == 404) {
-                    navigate('/404')
-                }
-            })
-        } else {
-            setLoading(true)
-            CatalogAPI.getCatalog().then(response => {
-                if (response.success) {
-                    setCatalog(response.data!)
-                    setLoading(false)
-
-                } else if (response.code == 404) {
-                    navigate('/404')
-                }
-            })
-        }
+            } else {
+                // if (response.code == 404)
+                navigate('/404')
+            }
+        })
         
     }, [categorySlug])
 

@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
 import { BaseController } from '@modules/base/controller';
-
 import { WelcomeService } from './service';
 
 

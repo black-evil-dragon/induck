@@ -14,10 +14,10 @@ export abstract class BaseController<T> {
 
     protected sendResponse<D>(
         res: Response,
-        response: SuccessResponse<D>,
+        data: SuccessResponse<D>,
         statusCode = 200
     ): Response {
-        return res.status(statusCode).json(response);
+        return res.status(statusCode).json(data);
     }
 
     protected handleError(
