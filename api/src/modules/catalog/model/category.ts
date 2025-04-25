@@ -1,24 +1,18 @@
+import { BaseAttributes, BaseMeta, BaseModel } from "@modules/base/model";
 
-export interface CategoryAttributes {
-    isActive?: boolean;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-}
-export interface CategoryMeta {
-    meta?: {
-        metaTitle?: string;
-        metaDescription?: string;
-        metaKeywords?: string[];
-    }
-}
-export interface Category extends CategoryMeta, CategoryAttributes {
+
+export type CategoryLink = {
     id: string;
-    slug: string;
+}
+
+export interface Category
+extends
+    BaseModel,
+    BaseMeta, BaseAttributes
+{
     title: string;
 
-    parent?: {
-        id: string;
-    };
+    parent?: CategoryLink;
 
     description?: string;
 }

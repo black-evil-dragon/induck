@@ -10,7 +10,7 @@ class CatalogRouter extends BaseRouter {
         this.registerRoutes();
     }
 
-    protected registerRoutes(): void {
+    protected registerRoutes() {
         this.registerRoute('get', '/catalog/', this.controller.handleCatalog);
     }
 }

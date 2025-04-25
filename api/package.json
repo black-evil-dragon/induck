@@ -12,11 +12,14 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/lowdb": "^1.0.15",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^8.1.0",
+    "lodash": "^4.17.21",
+    "lowdb": "^7.0.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

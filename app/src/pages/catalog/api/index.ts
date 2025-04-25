@@ -1,13 +1,14 @@
-import { categories, Category } from "@shared/data/catalog";
-import { selections } from "@shared/data/task";
-
 import { API, Response } from '@shared/api'
+import { Category } from './types';
 
 
 
 export const CatalogAPI = {
-    async getCatalog(id?: string): Promise<Response<Category[]>> {
-        const response = await API.get<Category[]>('/catalog/')
+    async getCatalog(slug?: string): Promise<Response<Category[] | Category>> {
+        let params = slug ? {
+            slug: slug
+        } : {}
+        const response = await API.get<Category[]>('/catalog/', params)
 
         return response
     }

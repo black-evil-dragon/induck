@@ -26,18 +26,33 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
     const [category, setCategory] = React.useState<Category | null>(null)
     const [isLoading, setLoading] = React.useState<boolean>(true)
 
-    React.useEffect(() => {
+
+    const fetchCatalog = async (slug?: string) => {
         setLoading(true)
-        CatalogAPI.getCatalog().then(response => {
-            if (response.success) {
-                setCatalog(response.data!)
-                setLoading(false)
+        const response = await CatalogAPI.getCatalog(slug)
+
+        if (response.success && response.code == 200) {
+
+            if (!categorySlug) {
+                setCatalog(response.data as Category[])
 
             } else {
-                // if (response.code == 404)
-                navigate('/404')
+                setCategory(response.data as Category)
+            
             }
-        })
+
+
+        } else if (response.success && response.code == 404) {
+            navigate('/404')
+        }
+
+        setLoading(false)
+    }
+
+    React.useEffect(() => {
+        
+        fetchCatalog(categorySlug)
+        
         
     }, [categorySlug])
 
@@ -46,14 +61,14 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
         <div className="page catalog">
             <section className="page-section">
                 <h1 className="page-title">
-                    Каталог
+                    Каталог {isLoading ? 1 : 0}
                 </h1>
             </section>
 
             {
                 isLoading ? <Loader />
                 : <>{
-                    categorySlug
+                    category
                     ? 
                     <>
                         <section>
@@ -61,13 +76,11 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
                         </section>
                         <section className="page-section catalog-items">
                             {
-                            category?.children?.length
-                            &&
-                            category.children.map((item: Category, index: number) => (
-                                <div className="catalog-items__item" key={`catalog-item-${index}`}>
-                                    <Link to={`${CatalogRouter.root}/${item.slug}`}>{item.title}</Link>
-                                </div>
-                            ))
+                                category.children && category.children.map((item: Category, index: number) => (
+                                    <div className="catalog-items__item" key={`catalog-item-${index}`}>
+                                        <Link to={`${CatalogRouter.root}/${item.slug}`}>{item.title}</Link>
+                                    </div>
+                                ))
                             }
                         </section>
 
@@ -83,7 +96,7 @@ const CatalogPage: React.FunctionComponent<CatalogPageProps> = () => {
                     </>
                     :
                     <section className="page-section catalog-items">
-                        {catalog.map((item: Category, index: number) => (
+                        {catalog.length && catalog.map((item: Category, index: number) => (
                             <div className="catalog-items__item" key={`catalog-item-${index}`}>
                                 <Link to={`${CatalogRouter.root}/${item.slug}`}>{item.title}</Link>
                             </div>

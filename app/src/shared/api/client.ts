@@ -37,6 +37,7 @@ export class ApiClient {
 
         this.axiosInstance.interceptors.response.use(
             (response: AxiosResponse<Response>) => {
+                // console.log(response);
                 return response;
             },
             (error: AxiosError) => {
@@ -70,6 +71,7 @@ export class ApiClient {
         }
 
         const response = await this.axiosInstance.request<Response<T>>(requestConfig)
+        response.data.code = response.status
 
         return response.data
     }
