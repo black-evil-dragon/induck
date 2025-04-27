@@ -15,6 +15,8 @@ extends
     parent?: CategoryLink;
 
     description?: string;
+
+    children?: Category[];
 }
 
 

@@ -7,7 +7,7 @@ interface FooterProps {
 const Footer: React.FunctionComponent<FooterProps> = () => {
     return (<>
         <footer>
-            FOOTER
+            
         </footer>
     </>);
 }

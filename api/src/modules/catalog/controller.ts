@@ -6,25 +6,31 @@ import { CatalogService } from './service';
 
 
 export class CatalogController extends BaseController<CatalogService> {
-    handleCatalog = (request: Request, response: Response) => {
+    getCatalog = (_request: Request, response: Response) => {
         try {
-            const { slug } = request.query
-
-            if (!slug) {
-                this.sendResponse(response, this.service.getCatalog({
-                    filterActive: true,
-                }));
-                return
-
-
-            } else {
-                this.sendResponse(response, this.service.getCategory({
-                    slug: slug as string
-                }));
-                return
-            }
+            this.sendResponse(response, this.service.getCatalog({
+                filterActive: true,
+            }));
+            return
             
            
+        } catch (error) {
+            this.handleError(response, error as Error);
+            return
+        }
+    };
+
+    getCategory = (request: Request, response: Response) => {
+        try {
+            const { slug, id } = request.query
+
+            this.sendResponse(response, this.service.getCategory({
+                slug: slug as string,
+                id: id as string
+            }));
+            return
+
+
         } catch (error) {
             this.handleError(response, error as Error);
             return

@@ -7,7 +7,8 @@ import { NoPage } from '@pages/404';
 import { HomePage } from '@pages/home';
 import { AuthPage, AuthRouter } from '@pages/auth';
 import { CatalogPage, CatalogRouter } from '@pages/catalog';
-// import { SelectionPage, SelectionRouter } from '@pages/selection';
+import { RandomTaskPage, TaskPage, TaskRouter } from '@pages/task';
+
 // import { RedirectComponent } from '@shared/Redirect';
 
 
@@ -32,12 +33,14 @@ function Routing() {
                         <Route path={CatalogRouter.category} element={<CatalogPage />} />
                     </Route>
 
-                    {/* Question */}
-                    {/* <Route path={SelectionRouter.selection}>
-                        <Route index element={<RedirectComponent path='/' />}/>
+                    {/* Task */}
+                    <Route path={TaskRouter.root}>
+                        {/* /catalog — список категорий */}
+                        <Route index element={<TaskPage />} />
 
-                        <Route path={SelectionRouter.selection} element={<SelectionPage />} />
-                    </Route> */}
+                        <Route path={`${TaskRouter.getTaskByID}/${TaskRouter.taskId}`} element={<TaskPage />} />
+                        <Route path={`${TaskRouter.getRandomTask}/${TaskRouter.categoryId}`} element={<RandomTaskPage />} />
+                    </Route>
 
                     {/*     ... */}
 

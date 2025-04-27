@@ -5,6 +5,32 @@ import { categories, Category } from './model/category';
 
 
 export class CatalogService extends BaseService {
+
+    createCategoryTree(data: Category[]) {
+        const categoryMap: { [id: string]: Category & { children?: Category[] } } = {};
+        data.forEach(category => {
+            categoryMap[category.id] = { ...category };
+        });
+
+
+        const rootCategories: Category[] = [];
+        data.forEach(category => {
+            if (category.parent) {
+                if (categoryMap[category.parent.id]) {
+                    if (!categoryMap[category.parent.id].children) {
+                        categoryMap[category.parent.id].children = [];
+                    }
+                    categoryMap[category.parent.id].children!.push(categoryMap[category.id]);
+                }
+            } else {
+                rootCategories.push(categoryMap[category.id]);
+            }
+        });
+
+        return { rootCategories, categoryMap };
+    }
+
+
     getCatalog(
         options: {
             filterActive?: boolean;
@@ -24,8 +50,18 @@ export class CatalogService extends BaseService {
             if (result) data = result;
         }
 
-        return this.createSuccessResponse(data);
+
+        const {rootCategories, categoryMap} = this.createCategoryTree(data)
+
+       
+
+        return this.createSuccessResponse({
+            categories: data,
+            categoryTree: rootCategories,
+            categoryMap: categoryMap
+        });
     }
+
 
     getCategory(
         options: {
@@ -51,11 +87,11 @@ export class CatalogService extends BaseService {
         // Берем дочерние категории
         if (!selectCategory) return this.createSuccessResponse(data);
 
-        selectCategories = categories.filter(category => category.parent?.id == selectCategory.id)
+        let childrenCategories = categories.filter(category => category.parent?.id == selectCategory.id)
 
         data = {
             ...selectCategory,
-            children: selectCategories,
+            children: childrenCategories,
         }
 
         return this.createSuccessResponse(data);

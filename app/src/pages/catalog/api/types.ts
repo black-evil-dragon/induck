@@ -4,5 +4,11 @@ export interface Category {
     title: string;
     parent?: Category;
     children?: Category[];
-    selections?: Selection[];
+}
+
+export type Catalog = {
+    categories: Category[],
+    categoryTree: any,
+    categoryMap: any,
+
 }

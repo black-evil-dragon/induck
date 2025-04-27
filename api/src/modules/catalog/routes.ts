@@ -11,7 +11,8 @@ class CatalogRouter extends BaseRouter {
     }
 
     protected registerRoutes() {
-        this.registerRoute('get', '/catalog/', this.controller.handleCatalog);
+        this.registerRoute('get', '/', this.controller.getCatalog);
+        this.registerRoute('get', '/category/', this.controller.getCategory);
     }
 }
 

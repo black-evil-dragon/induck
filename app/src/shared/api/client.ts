@@ -1,7 +1,7 @@
 // api/apiClient.ts
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { ApiConfig, ErrorResponse, ApiMethod, Response, SuccessResponse } from './types';
+import { ApiConfig, ApiMethod, Response } from './types';
 
 
 export class ApiClient {
